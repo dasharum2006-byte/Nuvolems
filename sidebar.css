@@ -1,0 +1,32 @@
+.sidebar {
+    position:fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 170px;
+    /* padding-top: 20px; */
+    padding: 30px 0 0 0px;
+    background: rgba(252, 252, 252, 0.25);
+    backdrop-filter: blur(20px);
+    /* !!! 0.1 */
+    border-radius: 0 0px 0px 0px;
+    /* чтобы твой стеклянный плеер выглядел одинаково круто и на Windows в Chrome, и на Айфоне */
+    -webkit-backdrop-filter: blur(25px);
+    /* solid -  сплошная линия, Она визуально отделяет стеклянный сайдбар от остального контента сайта, делая интерфейс объемным и трехмерным. */
+    border-right: 3px solid rgba(117, 119, 128, 0.11);
+
+}
+.menu-item {
+    display: flex;
+    padding: 15px;
+    margin: 5px;
+    align-items: center;
+
+}
+.text {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    margin-left: 8px;
+    letter-spacing: 0.4px;
+    font-size: 20px;
+}
