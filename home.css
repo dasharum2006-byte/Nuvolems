@@ -1,0 +1,61 @@
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    /*отступ от sidebar*/
+    padding-left: 220px ;
+}
+.section-title {
+    text-align: start;
+    font-size: 20px;
+}
+.cards-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Включает крутилку колесиком мыши */
+    scroll-behavior: smooth;
+     /* Скрываем скроллбар для Firefox и старых браузеров */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    flex-wrap: nowrap; /* Жестко запрещаем карточкам падать на новую строку */
+}
+/* column (колонка) — элементы встают строго друг на друга по вертикали (сверху вниз, как этажи или 
+кирпичи в столбике).row (строка) — элементы встают в одну линию по горизонтали (слева направо, как слова в строчке). */
+
+
+/* Скрываем  серую полосу скроллбара для Chrome, Opera и Safari */
+.cards-grid::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 20px;
+}
+.card-item {
+    /* Формула для 4 карточек в ряд: 25% от левой зоны минус 3 промежутка */
+    flex: 0 0 calc(25% - (20px * 3 / 4)); 
+    
+    /* Задаем фиксированную высоту, чтобы кубики оставались квадратными */
+    height: 140px; 
+
+    background-color: rgb(181, 200, 230);
+    
+    border-radius: 20px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    font-size: medium;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.content-left {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.player-right {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="themes.css">
     <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
     <aside class="sidebar">
@@ -15,21 +16,60 @@
         </div> -->
         <div class="menu-item">
             <img src="assets/searchblack.svg" alt="Search">
-            <spann class="text">Search</spann>
+            <span class="text">Search</span>
         </div>
         <div class="menu-item">
             <img src="assets/papka.svg" alt="Asset">
-            <spann class="text">Playlists</spann>
+            <span class="text">Playlists</span>
         </div>
         <div class="menu-item">
-            <img src="assets/cloud.svg" alt="Diamond">
-            <spann class="text">Sky</spann>
+            <img src="assets/cloud.svg" alt="My Collection">
+            <span class="text">My Collection</span>
+        </div>
+        <div class="menu-item">
+            <img src="assets/favourite.svg" alt="My Favourite">
+            <span class="text">My Favourite</span>
         </div>
         <div class="menu-item">
             <img src="assets/settingsblack.svg" alt="Settings">
-            <spann class="text">Settings</spann>
+            <span class="text">Settings</span>
         </div>
     </aside>
-    <script src="main.js"></script>
+    
+    <!-- треки моя волна - главный экран-->
+     <main class="main-content">
+        <div class="content-left">
+        <section class="section-genres">
+            <h3 class="section-title">Genres</h3>
+            <div class="cards-grid">
+                <div class="card-item">Pop</div>
+                <div class="card-item">Rock</div>
+                <div class="card-item">Hip-Hop</div>
+                <div class="card-item">Rap</div>
+                <div class="card-item">Jazz</div>
+                <div class="card-item">Electronic</div>
+                <div class="card-item">Indie</div>
+                <div class="card-item">Classical</div>
+            </div>
+        </section>
+        <section class="section-moods">
+        <h3 class="section-title">Moods</h3>
+            <div class="cards-grid">
+                <div class="card-item">Chill</div>
+                <div class="card-item">Energy</div>
+                <div class="card-item">Focus</div>
+                <div class="card-item">Workout</div>
+                <div class="card-item">Party</div>
+                <div class="card-item">Sad</div>
+                <div class="card-item">Sleep</div>
+            </div>
+        </section>
+        </div>
+        <!-- player vinil-->
+         <div class="player-right">
+            <div class="vnil-right">Player soon</div>
+         </div>
+     </main>
+     <script src="main.js"></script>
 </body>
 </html>
