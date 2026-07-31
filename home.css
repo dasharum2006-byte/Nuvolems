@@ -3,11 +3,15 @@
     flex-grow: 1;
     flex-direction: row;
     /*отступ от sidebar*/
-    padding-left: 220px ;
+    /* padding-left: 220px; */
+    padding-left: 50px;
 }
 .section-title {
+    margin-top: 60px;
     text-align: start;
-    font-size: 20px;
+    font-size: 25px;
+    color: #dddbdb; 
+    letter-spacing: 1px;
 }
 .cards-grid {
     display: flex;
@@ -30,15 +34,22 @@
     height: 0 !important;
     padding: 20px;
 }
-.card-item {
+
+.card-look {
     /* Формула для 4 карточек в ряд: 25% от левой зоны минус 3 промежутка */
     flex: 0 0 calc(25% - (20px * 3 / 4)); 
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-item {
     /* Задаем фиксированную высоту, чтобы кубики оставались квадратными */
     height: 140px; 
-
-    background-color: rgb(181, 200, 230);
-    
+    width: 100%;
+    background-color: rgb(138, 139, 141);
+     /*обрезает всё, что вылезает за круглые углы серого кубика */
+    overflow: hidden; 
     border-radius: 20px;
     display: flex;
     align-items: end;
@@ -47,15 +58,366 @@
     cursor: pointer;
     transition: transform 0.2s;
 }
-.content-left {
-    flex: 0 0 45%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-.player-right {
-    flex:1;
+.imgCoverWave {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    /*заставляет картинку заполнить кубик без растягивания и сплющивания */
+    object-fit: cover; 
+}
+.content-left {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    /* При значении hidden выходящая за границы часть контента обрезается и 
+    становится невидимой. Полосы прокрутки при этом не добавляются. */
+    overflow: hidden;
+}
+
+h4 {
+    margin: 0;
+    font-size: 20px;
+    color: rgb(218, 216, 216);
+    font-family: sans-serif;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 10px;
+    letter-spacing: 2px;
+}
+
+.vinil-player-body {
+    /*ссылка на картинку чтобы была как задний фон*/
+    background-image: url(assets/vinil.png);
+    /* !!!!!!!! */
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* gap: 20px; */
+    /* Если не написать background-size, браузер покажет картинку в её реальном гигантском масштабе. 
+    В итоге в твой маленький квадрат влезет только кусок верхнего левого угла проигрывателя, а вся красота останется за кадром.
+    Свойство contain (или cover) заставляет браузер аккуратно 
+    сжать картинку под размеры твоего блока, чтобы она идеально поместилась внутри. */
+    background-size: cover;
+    /*  чтобы обложкк встала в пластинку */
+    justify-content: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+     margin-top: -150px;
+    
+}
+.vinil-disk-treck {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50%;
+    /* Сделай так, чтобы изображение заполнило весь доступный объём контейнера, 
+    но при этом сохрани его исходные пропорции (соотношение ширины и высоты */
+    object-fit: cover;
+    /* нам нужны индексы потому что это слетит из за абсолютной позиции */
+    z-index: 1;
+    transform: translate(-70px, 0px);
+
+}
+.vinil-disk-plast {
+    display: flex;
+    width: 650px;
+    height: 650px;
+    position: absolute;
+    z-index: 2;
+    /* Первое число (X): положительное двигает вправо, отрицательное — влево.
+    Второе число (Y): положительное двигает вниз, отрицательное — вверх. */
+    transform: translate(-85px, 0px);
+}
+/* нету иглы */
+.player-right {
+    flex:1;
+    display: flex;
+    /* по горизонтали */
+    justify-content: center;
+    /* по вертикали */
+    align-items: center;
+}
+.audio-player {
+    display: flex;
+    justify-content: center;
+    
+}
+.coverforplayer {
+    display: block;
+    width: 420px;
+    height: 420px;
+    border-radius: 20px;
+    object-fit: cover; 
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.songplayer {
+    all: unset; 
+    font-family: sans-serif;
+    font-size: 30px;
+    -webkit-appearance: none;
+    background: none !important;
+    box-shadow: none !important;
+    color: rgb(203, 205, 207);
+    border: none !important; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+
+.artistplayer {
+    all: unset; 
+    font-family: sans-serif;
+    font-size: 25px;
+    -webkit-appearance: none;
+    background: none !important;
+    box-shadow: none !important;
+    color: rgb(115, 116, 117);
+    border: none !important; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-bottom: 35px;
+    padding: 5px;
+    letter-spacing: 2px;
+}  
+
+
+/* Player with buttons */
+.player-container {
+    display: flex;
+    width: 450px;
+    height: 650px;
+    /* glassmorfizm */
+    background: rgba(255, 255, 255, 0.02) !important;
+     /* 2. САМОЕ ГЛАВНОЕ: размываем то, что находится ЗА плеером (черный корпус) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Для поддержки в Safari и старых браузерах */
+    box-shadow: none !important;        /* Убирает тени, если были */
+     /* 3. Тонкая полупрозрачная рамка, которая создает эффект блика на грани стекла */
+    border: 2px solid rgba(255, 255, 255, 0.062);
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    /* bottom: 10px; */
+    left: 50%;
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 25px;
+    margin-top: 0px;
+    
+}
+.song-slider{
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+}
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    background: #dad6d6;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+     -webkit-appearance: none; /* Убивает стандартный стиль в Chrome, Safari, Яндекс */
+    -moz-appearance: none;    /* Убивает стандартный стиль в Firefox */
+    appearance: none;         /* Универсальный сброс */
+    cursor: pointer;
+    
+}
+.seek-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #6b6969 !important;
+    
+}
+.current-time,
+.song-duration {
+   font-size: 14px;
+   font-family: sans-serif;
+    color: rgb(214, 207, 207);
+    line-height: 1;      /* Убирает невидимые отступы шрифта */
+    white-space: nowrap; /* Запрещает цифрам переноситься на новую строку */
+   
+}
+
+.control-btn {
+    display: flex;
+    flex-direction: row;
+    background: none;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background: none !important; /* Убирает серый/белый фон */
+    border: none !important; 
+    justify-content: space-between;
+}
+/* Уничтожаем рамки и серый дефолтный фон у кнопок */
+.control-btn button {
+    all: unset; /* Полностью стирает стандартный вид кнопок браузера */
+    background: none !important;
+    border: none !important;
+    padding: 15px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+
+}
+#btn-play-pause img {
+    display: flex;
+    width: 65px !important;
+    height: 65px !important;
+}
+.skipprevious img,
+.skipnext img {
+    width: 50px !important;
+    height: 50px !important;
+     /* Защита изображения от сплющивания */
+    object-fit: contain; 
+     /* Добавляем плавность для будущих эффектов наведения */
+    transition: transform 0.2s ease;
+    padding: 2px;
+}
+/* Делаем саму кнопку якорем для меню */
+.control-btn .morevert {
+    position: relative; /* Теперь меню будет отсчитывать координаты строго от этой кнопки */
+}
+
+
+
+
+/* НАСТРОЙКИ ДЛЯ МУЗЫКАЛЬНОГО ПЛЕЕРА */
+
+.player-settings {
+    display: none; /* ПО УМОЛЧАНИЮ НАМЕРТВО ПРЯЧЕМ МЕНЮ */
+    position: absolute;
+    /* как у плеера */
+    background: rgba(24, 24, 24, 0.85) !important; /* Чуть темнее, чтобы читался текст */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0px 0;
+    z-index: 100; /* Чтобы меню всплывало НАД ползунками и обложкой */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    margin: 0;
+
+    /* чтобы он повыше сплывал */
+    bottom: 55px;
+    left: 0;
+
+}
+/* будем добавлять через JavaScript для показа меню */
+.player-settings.show {
+    display: block; /* Показывает меню при клике */
+}
+.settings-player-item {
+    display: flex;
+    width: 150px;
+    height: 40px;
+    padding: 0;
+    margin: 5px;
+    font-family: sans-serif;
+    align-items: center;
+}
+.setting-player-icon {
+    width: 23px;
+    height: 23px;
+}
+.settings-player-span {
+    all: unset;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: aliceblue;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 3px;
+}
+
+.sound-container {
+    /* из за того что у нее три действия чтобы она не улетела */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.soundplayer-nosound {
+    display:  none;
+    position: absolute;
+    height: 170px;
+    width: 35px;
+    bottom: 30px;
+    border-radius: 20px;
+    background: rgba(24, 24, 24, 0.85) !important; /* Чуть темнее, чтобы читался текст */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 110; 
+}
+/* при наведении показываем регулировку звука 
+: «В тот самый момент, когда пользователь наставит курсор мышки на контейнер .soundplayer-container, найди внутри него 
+скрытое окошко .soundplayer-nosound и примени к нему следующие стили».*/
+/* Она состоит из трёх частей, и пробел между ними имеет огромное значение:.soundplayer-container — это наша общая 
+невидимая коробка-контейнер, в которой сидят и кнопка-динамик, и скрытое стёлышко с громкостью.:hover — это триггер (событие). 
+Он означает: «когда мышка парит НАД этим элементом».Пробел — это знак иерархии (вложенности). Он говорит браузеру: «ищи то, что 
+написано дальше, strictly внутри первой коробки»..soundplayer-nosound — это само наше скрытое стёклышко с ползунком. */
+.sound-container:hover .soundplayer-nosound {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 160px;
+    height: 5px;
+    background: #c5c0c0;
+    cursor: pointer;
+    /* ? */
+    outline: none;
+    /* поворачиваем в горизонталь */
+    transform: rotate(-90deg);
+    border-radius: 2px;
+
+    
+}
+ .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #817b7b;
+    width: 13px;
+    justify-content: center;
+    height: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+ }
+ .control-btn .sound {
+    padding: 4px !important;
+ }
+.control-btn .morevert {
+    padding: 2px !important;
 }

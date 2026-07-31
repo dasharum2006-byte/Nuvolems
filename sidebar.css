@@ -1,12 +1,10 @@
 .sidebar {
-    position:fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    width: 200px;
+    width: 300px;
     /* padding-top: 20px; */
-    padding: 40px 0 0 0px;
-    background: rgba(255, 255, 255, 0.25);
+    background: #181818;
     backdrop-filter: blur(20px);
     /* !!! 0.1 */
     border-radius: 0 0px 0px 0px;
@@ -31,5 +29,6 @@
     letter-spacing: 0.4px;
     font-size: 20px;
     cursor: pointer;
+    color: aliceblue;
 }
 /*сделать наведение такое же как и у текста*/
